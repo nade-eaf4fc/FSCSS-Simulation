@@ -1,15 +1,14 @@
 using Plots
 
 function fscss_signal(sf::Int64,bw::Int64,m::Int64;ovs=1)
-    M=2^sf
-    tc=1/bw
-    ts=tc*M
-    M=M*ovs
-    x=zeros(ComplexF64,M)
-    x0=zeros(ComplexF64,M)
+    M=2^sf #number of chips
+    tc=1/bw # chip length [sec]
+    ts=tc*M # symbol length [sec]
+    M=M*ovs # if you see signal form that increase instantaneous frequency, you should set "ovs>=1". And, recommended "ovs" are multiples of 2 
+    x=zeros(ComplexF64,M) # fscc (LoRa) signal on equivalent low-pass system
 
     for k in 1:M
-        x[k]=exp(im*2pi*mod((m+ovs*(k-1))*tc/ovs,M*tc)^2*bw/(2*M*tc))
+        x[k]=exp(im*2pi*mod((m*ovs+(k-1))*tc/ovs,M*tc)^2*bw/(2*M*tc))
     end
 
     axis_x=range(0,ts,length=M)
@@ -22,11 +21,10 @@ function fscss_signal(sf::Int64,bw::Int64,m::Int64;ovs=1)
         legend=false,
         xgrid=false,
         ygrid=false,)
-    savefig(p1,"fscss_signal.svg")
+    savefig(p1,"fscss_signal_m$(m).svg")
     display(p1)
-
-    
+    println("Press Enter to exit this program (or function)")
     readline(stdin)
 end
 
-fscss_signal(7,125*10^3,0)
+fscss_signal(7,125*10^3,2^6;ovs=1)
