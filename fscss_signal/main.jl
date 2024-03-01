@@ -16,12 +16,12 @@ function fscss_signal(sf::Int64,bw::Int64,m::Int64;ovs=1)
         legend=false,
         xgrid=false,
         ygrid=false,
-        fmt=:svg)
+        fmt=:png)
     plot!(axis_x,imag(x),
         legend=false,
         xgrid=false,
         ygrid=false,)
-    savefig(p1,"fscss_signal_m$(m)_ovs$(ovs).svg")
+    savefig(p1,"fscss_signal_m$(m)_ovs$(ovs).png")
     display(p1)
     println("Press Enter to exit this program (or function)")
     readline(stdin)
