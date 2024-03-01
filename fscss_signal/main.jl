@@ -4,7 +4,7 @@ function fscss_signal(sf::Int64,bw::Int64,m::Int64;ovs=1)
     M=2^sf #number of chips
     tc=1/bw # chip length [sec]
     ts=tc*M # symbol length [sec]
-    M=M*ovs # if you see signal form that increase instantaneous frequency, you should set "ovs>=1". And, recommended "ovs" are multiples of 2 
+    M=M*ovs # if you want to see signal form that increase instantaneous frequency, you should set "ovs=2".  
     x=zeros(ComplexF64,M) # fscc (LoRa) signal on equivalent low-pass system
 
     for k in 1:M
@@ -27,4 +27,4 @@ function fscss_signal(sf::Int64,bw::Int64,m::Int64;ovs=1)
     readline(stdin)
 end
 
-fscss_signal(7,125*10^3,2^6;ovs=1)
+fscss_signal(7,125*10^3,0;ovs=1)
