@@ -21,10 +21,10 @@ function fscss_signal(sf::Int64,bw::Int64,m::Int64;ovs=1)
         legend=false,
         xgrid=false,
         ygrid=false,)
-    savefig(p1,"fscss_signal_m$(m).svg")
+    savefig(p1,"fscss_signal_m$(m)_ovs$(ovs).svg")
     display(p1)
     println("Press Enter to exit this program (or function)")
     readline(stdin)
 end
 
-fscss_signal(7,125*10^3,0;ovs=1)
+fscss_signal(7,125*10^3,0;ovs=2)
