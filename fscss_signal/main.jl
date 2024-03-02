@@ -6,7 +6,7 @@ function fscss_signal(sf::Int64,bw::Int64,m::Int64;ovs=1)
     ts=tc*M # symbol length [sec]
     M=M*ovs # if you want to see signal form that increase instantaneous frequency, you should set "ovs=2".  
     x=zeros(ComplexF64,M) # fscc (LoRa) signal on equivalent low-pass system
-
+    
     for k in 1:M
         x[k]=exp(im*2pi*mod((m*ovs+(k-1))*tc/ovs,M*tc)^2*bw/(2*M*tc))
     end
