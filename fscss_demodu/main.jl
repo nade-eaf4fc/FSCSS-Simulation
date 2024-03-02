@@ -1,7 +1,7 @@
 using Plots
 using FFTW
 gr()
-function dft(y::Array,M::Int64,ovs::Int64)
+function dft(y::Array,M::Int64;ovs=1)
     Y=zeros(ComplexF64,M)#周波数領域
     for n in 0:M-1
         for k in 0:M-1 #配列は1から始まることに注意
@@ -32,7 +32,7 @@ function fscss_demodu_dft(sf::Int64,bw::Int64;ovs=1)
             d[k]=x[k]*exp(-im*2pi*((k-1)*tc/ovs)^2*bw/(2*ts))
         end
 
-        Y=dft(d,M,ovs)
+        Y=dft(d,M,ovs=ovs)
         Y_abs=1/(M)*abs.(Y)
         axis_x=range(0,M-1,length=M)
         p1=plot(axis_x,Y_abs,
