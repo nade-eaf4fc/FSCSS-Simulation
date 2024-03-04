@@ -104,14 +104,14 @@ function main(sf::Int64,bw::Int64,resolution::Float64,iter::Int64)
     close(io1)
     #axis_x=range(minSNR,maxSNR,length=amount_plot)
     
-    p1=plot(ser_array[:,1],ser_array[:,2],
-        legend=false,
-        xgrid=false,
-        ygrid=false,
-        fmt=:png)
-    savefig(p1,"result_ser_sf$(sf)_minSNR$(minSNR)_maxSNR$(maxSNR)_resolution$(resolution)_iter$(iter).png")
-    display(p1)
-    println("Press Enter to exit this program (or function)")
-    readline(stdin)
+    # p1=plot(ser_array[:,1],ser_array[:,2],
+    #     legend=false,
+    #     xgrid=false,
+    #     ygrid=false,
+    #     fmt=:png)
+    # savefig(p1,"result_ser_sf$(sf)_minSNR$(minSNR)_maxSNR$(maxSNR)_resolution$(resolution)_iter$(iter).png")
+    # display(p1)
+    # println("Press Enter to exit this program (or function)")
+    # readline(stdin)
 end
 @elapsed main(7,125*10^3,0.5,10^4)
