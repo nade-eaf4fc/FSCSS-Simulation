@@ -114,15 +114,4 @@ function main(sf::Int64,bw::Int64,resolution::Float64,iter::Int64)
     println("Press Enter to exit this program (or function)")
     readline(stdin)
 end
-
-time=zeros(Float64,6)
-for i in 0:5
-    time[i+1] = @elapsed main(i+7,125*10^3,0.5,10^4)
-end
-
-io1=open("time.csv","w")
-for i in time
-    println(io1,i)
-end
-
-close(io1)
+@elapsed main(7,125*10^3,0.5,10^4)
